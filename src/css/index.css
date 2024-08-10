@@ -3,12 +3,6 @@
 @import url('simplelightbox/dist/simple-lightbox.min.css');
 @import url('izitoast/dist/css/iziToast.min.css');
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .container-gallery {
   display: flex;
   justify-content: center;
