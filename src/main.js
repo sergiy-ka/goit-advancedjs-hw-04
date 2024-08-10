@@ -13,8 +13,8 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
 });
 
-let page = 1;
 const per_page = 15;
+let page = 1;
 let searchValue = '';
 
 const onSearchFormSubmit = async event => {
@@ -22,6 +22,8 @@ const onSearchFormSubmit = async event => {
     event.preventDefault();
 
     searchValue = event.currentTarget.elements.user_query.value.trim();
+    gallery.innerHTML = '';
+    loadMoreBtn.classList.add('is-hidden');
 
     if (searchValue === '') {
       iziToast.error({
@@ -29,16 +31,16 @@ const onSearchFormSubmit = async event => {
         message: 'Please enter something to search.',
         position: 'topRight',
       });
+
       searchForm.reset();
+
       return;
     }
-    loadMoreBtn.classList.add('is-hidden');
-    gallery.innerHTML = '';
-    loader.classList.remove('is-hidden');
+
     page = 1;
 
+    loader.classList.remove('is-hidden');
     const { data } = await fetchPhotos(searchValue, page, per_page);
-
     loader.classList.add('is-hidden');
 
     if (data.hits.length === 0) {
@@ -48,38 +50,35 @@ const onSearchFormSubmit = async event => {
           'Sorry, there are no images matching your search query. Please try again!',
         position: 'topRight',
       });
+
       return;
     }
 
     gallery.innerHTML = galleryMarkup(data.hits);
-
-    lightbox.refresh();
-
     loadMoreBtn.classList.remove('is-hidden');
+    lightbox.refresh();
   } catch (error) {
     iziToast.error({
       title: 'Error',
       message: 'Failed to load images.',
       position: 'topRight',
     });
+
     loader.classList.add('is-hidden');
   }
 };
 
 const onLoadMoreBtnClick = async event => {
   try {
-    loader.classList.remove('is-hidden');
     loadMoreBtn.classList.add('is-hidden');
+    loader.classList.remove('is-hidden');
 
     page += 1;
 
     const { data } = await fetchPhotos(searchValue, page, per_page);
-
     loader.classList.add('is-hidden');
-
     gallery.insertAdjacentHTML('beforeend', galleryMarkup(data.hits));
     loadMoreBtn.classList.remove('is-hidden');
-
     lightbox.refresh();
 
     if (page * per_page >= data.totalHits) {
@@ -102,6 +101,7 @@ const onLoadMoreBtnClick = async event => {
       message: 'Failed to load more images.',
       position: 'topRight',
     });
+
     loader.classList.add('is-hidden');
   }
 };
