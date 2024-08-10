@@ -57,7 +57,6 @@ const onSearchFormSubmit = async event => {
 
     loadMoreBtn.classList.remove('is-hidden');
   } catch (error) {
-    // console.log(error);
     iziToast.error({
       title: 'Error',
       message: 'Failed to load images.',
@@ -65,8 +64,6 @@ const onSearchFormSubmit = async event => {
     });
     loader.classList.add('is-hidden');
   }
-
-  // searchForm.reset();
 };
 
 const onLoadMoreBtnClick = async event => {
@@ -79,15 +76,6 @@ const onLoadMoreBtnClick = async event => {
     const { data } = await fetchPhotos(searchValue, page, per_page);
 
     loader.classList.add('is-hidden');
-
-    // if (data.hits.length === 0) {
-    //   iziToast.error({
-    //     title: 'Error',
-    //     message: 'Sorry, there are no more images to load.',
-    //     position: 'topRight',
-    //   });
-    //   return;
-    // }
 
     gallery.insertAdjacentHTML('beforeend', galleryMarkup(data.hits));
     loadMoreBtn.classList.remove('is-hidden');
@@ -104,13 +92,11 @@ const onLoadMoreBtnClick = async event => {
     }
 
     let rect = document.querySelector('.gallery__item').getBoundingClientRect();
-    console.log(rect);
     window.scrollBy({
       top: rect.height * 2,
       behavior: 'smooth',
     });
   } catch (error) {
-    // console.log(error);
     iziToast.error({
       title: 'Error',
       message: 'Failed to load more images.',

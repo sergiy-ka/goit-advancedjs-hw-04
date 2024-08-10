@@ -1,4 +1,5 @@
 @import url('modern-normalize/modern-normalize.css');
+@import url('./common.css');
 @import url('simplelightbox/dist/simple-lightbox.min.css');
 @import url('izitoast/dist/css/iziToast.min.css');
 
@@ -73,6 +74,7 @@
   row-gap: 24px;
   flex-wrap: wrap;
   margin-bottom: 36px;
+  /* margin-top: 0px; */
 }
 
 .gallery li {
@@ -141,7 +143,7 @@
   position: relative;
   box-sizing: border-box;
   animation: rotation 2s linear infinite;
-  margin-bottom: 54px;
+  margin-bottom: 36px;
 }
 .loader::after {
   content: '';
@@ -166,7 +168,7 @@
 }
 
 .load-more-btn {
-  margin-bottom: 54px;
+  margin-bottom: 36px;
 }
 
 .load-more-btn:hover {
