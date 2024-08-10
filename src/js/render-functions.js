@@ -11,7 +11,7 @@ export const galleryMarkup = data => {
         downloads,
       }) => {
         return `
-            <li>
+            <li class="gallery__item">
                 <a href="${largeImageURL}">
                     <img class="gallery__image" src="${webformatURL}" alt="${tags}" />
                 </a>

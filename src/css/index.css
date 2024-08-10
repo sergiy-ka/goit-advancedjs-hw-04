@@ -1,4 +1,4 @@
-@import url('./common.css');
+@import url('modern-normalize/modern-normalize.css');
 @import url('simplelightbox/dist/simple-lightbox.min.css');
 @import url('izitoast/dist/css/iziToast.min.css');
 
@@ -43,7 +43,8 @@
   border-color: #4e75ff;
 }
 
-.search-btn {
+.search-btn,
+.load-more-btn {
   padding: 8px 16px;
   justify-content: center;
   align-items: center;
@@ -157,6 +158,18 @@
   border-radius: 50%;
   animation: rotationBack 1s linear infinite;
   transform-origin: center center;
+}
+
+.load-more-btn.is-hidden {
+  display: none;
+}
+
+.load-more-btn {
+  margin-bottom: 54px;
+}
+
+.load-more-btn:hover {
+  background: #6c8cff;
 }
 
 @keyframes rotation {
