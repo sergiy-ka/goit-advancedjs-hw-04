@@ -141,6 +141,7 @@
   position: relative;
   box-sizing: border-box;
   animation: rotation 2s linear infinite;
+  margin-bottom: 54px;
 }
 .loader::after {
   content: '';
